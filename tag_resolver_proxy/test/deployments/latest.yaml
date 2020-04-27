@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-zero
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sleep-zero
+  template:
+    metadata:
+      labels:
+        app: sleep-zero
+    spec:
+      containers:
+        - name: sleep
+          image: tutum/curl:latest
+          command: ["/bin/sleep","infinity"]
+          resources:
+            requests:
+              cpu: "0m"
+              memory: "0M"
+            limits:
+              cpu: "0m"
+              memory: "0M"
